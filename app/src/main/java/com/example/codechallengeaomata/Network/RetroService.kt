@@ -1,0 +1,15 @@
+package com.example.codechallengeaomata.Network
+
+import com.example.codechallengeaomata.Model.BookListModel
+import com.example.codechallengeaomata.Model.Hero
+import io.reactivex.Observable
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+
+interface RetroService {
+
+    @GET("volumes?")
+    fun getBookListFromApi(@Query("q") query: String) : Observable<BookListModel>
+
+}

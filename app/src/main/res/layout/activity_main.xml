@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:orientation="horizontal"
+        android:hint="enter book name">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of Columns :"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="@dimen/_14sdp"
+            android:layout_gravity="center"/>
+
+        <RelativeLayout
+            android:id="@+id/rel_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            >
+        <TextView
+            android:id="@+id/txt_one"
+            style="@style/style_text_unselected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:layout_margin="@dimen/_5sdp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            >
+            <TextView
+                android:id="@+id/txt_two"
+                style="@style/style_text_unselected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:layout_margin="@dimen/_5sdp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            >
+            <TextView
+                android:id="@+id/txt_three"
+                style="@style/style_text_selected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:layout_margin="@dimen/_5sdp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            >
+            <TextView
+                android:id="@+id/txt_four"
+                style="@style/style_text_unselected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:layout_margin="@dimen/_5sdp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_five"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            >
+            <TextView
+                android:id="@+id/txt_five"
+                style="@style/style_text_unselected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:layout_margin="@dimen/_5sdp"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewfragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear"
+        android:layout_margin="5dp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
