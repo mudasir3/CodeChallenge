@@ -1,17 +1,22 @@
 package com.example.codechallengeaomata.Activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.codechallengeaomata.Adapter.BookListAdapter
-import com.example.codechallengeaomata.Model.BookListModel
+import com.example.codechallengeaomata.BaseApplication
+import com.example.codechallengeaomata.Model.SuperHeroModel
 import com.example.codechallengeaomata.R
 import com.example.codechallengeaomata.ViewModel.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Retrofit
+import javax.inject.Inject
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var viewModel: MainActivityViewModel
@@ -20,12 +25,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
+
+        BaseApplication.networkComponent!!.inject(this@MainActivity)
 
         initClickListeners()
         loadAPIData("q")
 
-        recyclerViewfragment.apply {
+        recyclerView.apply {
             val gridLayoutManager =
                 GridLayoutManager(this@MainActivity, 3, LinearLayoutManager.VERTICAL, false)
             this.layoutManager =gridLayoutManager
@@ -34,21 +42,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun loadAPIData(query:String){
+    fun loadAPIData(query: String){
+        progressbar.visibility= View.VISIBLE
+
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        viewModel.getBookListObserver().observe(this,object: Observer<BookListModel> {
-            override fun onChanged(t: BookListModel?) {
-                if(t !=null)
-                {
-                    bookListAdapter.bookListData =t.items
+        viewModel.getBookListObserver().observe(this, object : Observer<ArrayList<SuperHeroModel>> {
+            override fun onChanged(t: ArrayList<SuperHeroModel>?) {
+                if (t != null) {
+                    bookListAdapter.bookListData = t
                     bookListAdapter.notifyDataSetChanged()
-                }else
-                {
-                    Toast.makeText(this@MainActivity,"Error in fetching data", Toast.LENGTH_SHORT).show()
+
+                    progressbar.visibility = View.GONE
+
+                } else {
+                    progressbar.visibility = View.GONE
+
+                    Toast.makeText(this@MainActivity, "Error in fetching data", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         })
-        viewModel.makeApiCall(query)
+        viewModel.getHeroList()
     }
 
     fun initClickListeners(){
@@ -61,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 
             val gridLayoutManager =
                 GridLayoutManager(this@MainActivity, 1, LinearLayoutManager.VERTICAL, false)
-            recyclerViewfragment.layoutManager =gridLayoutManager
+            recyclerView.layoutManager =gridLayoutManager
         }
 
         rel_two.setOnClickListener {
@@ -72,7 +86,7 @@ class MainActivity : AppCompatActivity() {
             txt_five.setTextAppearance(R.style.style_text_unselected)
             val gridLayoutManager =
                 GridLayoutManager(this@MainActivity, 2, LinearLayoutManager.VERTICAL, false)
-            recyclerViewfragment.layoutManager =gridLayoutManager
+            recyclerView.layoutManager =gridLayoutManager
         }
 
         rel_three.setOnClickListener {
@@ -83,7 +97,7 @@ class MainActivity : AppCompatActivity() {
             txt_five.setTextAppearance(R.style.style_text_unselected)
             val gridLayoutManager =
                 GridLayoutManager(this@MainActivity, 3, LinearLayoutManager.VERTICAL, false)
-            recyclerViewfragment.layoutManager =gridLayoutManager
+            recyclerView.layoutManager =gridLayoutManager
 
         }
 
@@ -96,7 +110,7 @@ class MainActivity : AppCompatActivity() {
 
             val gridLayoutManager =
                 GridLayoutManager(this@MainActivity, 4, LinearLayoutManager.VERTICAL, false)
-            recyclerViewfragment.layoutManager =gridLayoutManager
+            recyclerView.layoutManager =gridLayoutManager
         }
 
         rel_five.setOnClickListener {
@@ -108,7 +122,7 @@ class MainActivity : AppCompatActivity() {
 
             val gridLayoutManager =
                 GridLayoutManager(this@MainActivity, 5, LinearLayoutManager.VERTICAL, false)
-            recyclerViewfragment.layoutManager =gridLayoutManager
+            recyclerView.layoutManager =gridLayoutManager
         }
     }
 

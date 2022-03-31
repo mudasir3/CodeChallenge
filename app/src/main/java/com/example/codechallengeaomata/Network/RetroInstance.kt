@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetroInstance {
 
     companion object{
-        val baseURL ="https://www.googleapis.com/books/v1/" //Movie List Example
+        val baseURL ="https://simplifiedcoding.net/demos/"
 
         fun getRetroInstanceMovie() :Retrofit
         {

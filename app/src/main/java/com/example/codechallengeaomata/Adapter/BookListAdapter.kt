@@ -4,20 +4,23 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.codechallengeaomata.Activity.FullScreenActivity
-import com.example.codechallengeaomata.Model.VolumeInfo
+import com.example.codechallengeaomata.Model.SuperHeroModel
 import com.example.codechallengeaomata.R
 import kotlinx.android.synthetic.main.recycler_list_row.view.*
 
 
 class BookListAdapter(var context: Context) : RecyclerView.Adapter<BookListAdapter.MyViewHolder>() {
 
-    var bookListData = ArrayList<VolumeInfo>()
+    var bookListData = ArrayList<SuperHeroModel>()
 
     var mContext =context
 
@@ -44,16 +47,28 @@ class BookListAdapter(var context: Context) : RecyclerView.Adapter<BookListAdapt
     class MyViewHolder(view: View) :RecyclerView.ViewHolder(view){
 
         val thumbImageView =view.thumbImageView
+        val progressbar =view.progressbar
 
-        fun bind(context: Context, data: VolumeInfo){
-            val imageThumbnail =data.volumeInfo.imageLinks.smallThumbnail
+        fun bind(context: Context, data: SuperHeroModel){
+            val imageThumbnail =data.imageurl
 
             try {
 
-                Glide.with(context)
-                    .load(imageThumbnail)
-                    .dontAnimate()
-                    .into(thumbImageView)
+                Glide.with(context).load(imageThumbnail)
+                    .into(object : SimpleTarget<Drawable?>() {
+                        override fun onResourceReady(
+                            resource: Drawable,
+                            transition: Transition<in Drawable?>?
+                        ) {
+                            thumbImageView.setImageDrawable(resource)
+                            progressbar.visibility=View.GONE
+                        }
+                    })
+
+//                Glide.with(context)
+//                    .load(imageThumbnail)
+//                    .dontAnimate()
+//                    .into(thumbImageView)
             }
             catch (e: Exception){
 
