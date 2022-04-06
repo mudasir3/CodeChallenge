@@ -1,4 +1,4 @@
-package com.example.codechallengeaomata.Activity
+package com.example.codechallenge.Activity
 
 import android.os.Bundle
 import android.view.View
@@ -8,11 +8,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.codechallengeaomata.Adapter.BookListAdapter
-import com.example.codechallengeaomata.BaseApplication
-import com.example.codechallengeaomata.Model.SuperHeroModel
-import com.example.codechallengeaomata.R
-import com.example.codechallengeaomata.ViewModel.MainActivityViewModel
+import com.example.codechallenge.Adapter.BookListAdapter
+import com.example.codechallenge.BaseApplication
+import com.example.codechallenge.Model.SuperHeroModel
+import com.example.codechallenge.Network.RetroService
+import com.example.codechallenge.R
+import com.example.codechallenge.ViewModel.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -23,12 +24,19 @@ class MainActivity : AppCompatActivity() {
     lateinit var bookListAdapter: BookListAdapter
 
 
+    var retrofit: Retrofit? = null
+        @Inject set
+
+    var retroService:RetroService?=null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
 
         BaseApplication.networkComponent!!.inject(this@MainActivity)
+
+        retroService =retrofit!!.create(RetroService::class.java)
 
         initClickListeners()
         loadAPIData("q")
@@ -62,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-        viewModel.getHeroList()
+        viewModel.getHeroList(retroService)
     }
 
     fun initClickListeners(){

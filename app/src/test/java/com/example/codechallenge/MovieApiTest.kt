@@ -1,12 +1,6 @@
-package com.example.codechallengeaomata
+package com.example.codechallenge
 
-import androidx.lifecycle.Observer
-import com.example.codechallengeaomata.Model.SuperHeroModel
-import com.example.codechallengeaomata.Network.RetroService
-import com.example.codechallengeaomata.ViewModel.MainActivityViewModel
-import io.reactivex.Observable
-import io.reactivex.observers.TestObserver
-import junit.framework.Assert.assertEquals
+import com.example.codechallenge.Network.RetroService
 import junit.framework.Assert.assertFalse
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
@@ -14,7 +8,7 @@ import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import retrofit2.Response
+
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

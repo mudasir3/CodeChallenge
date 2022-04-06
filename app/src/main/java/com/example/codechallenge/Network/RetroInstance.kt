@@ -1,4 +1,4 @@
-package com.example.codechallengeaomata.Network
+package com.example.codechallenge.Network
 
 
 import retrofit2.Retrofit

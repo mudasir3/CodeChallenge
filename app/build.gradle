@@ -1,20 +1,22 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-//apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 android {
-    compileSdkVersion 31
+    compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.codechallengeaomata"
+        applicationId "com.example.codechallenge"
         minSdkVersion 24
-        targetSdkVersion 31
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    ext{
+        androidXCore = "1.6.0"
     }
 
     buildTypes {
@@ -36,17 +38,31 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+
+    configurations.all {
+        resolutionStrategy {
+            force 'androidx.core:core-ktx:1.6.0'
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    //Uni test Mock server
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.3.1'
+    testImplementation 'org.mockito:mockito-core:2.28.2'
+    androidTestImplementation 'org.mockito:mockito-android:2.24.5'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0'
+
 
     //Recyclerview
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha06'
@@ -75,10 +91,15 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
     //dagger
-    def dagger_version = "2.40"
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt 'com.google.dagger:dagger-android-processor:2.15'
+    kapt 'com.google.dagger:dagger-compiler:2.15'
 
-    testImplementation 'com.squareup.okhttp3:mockwebserver:4.3.1'
+    implementation 'com.google.dagger:dagger:2.13'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.13'
+
+//    def dagger_version = "2.40"
+//    implementation "com.google.dagger:dagger:$dagger_version"
+//    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+//
 
 }

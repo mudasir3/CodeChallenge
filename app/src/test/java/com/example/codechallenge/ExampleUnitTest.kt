@@ -1,4 +1,4 @@
-package com.example.codechallengeaomata
+package com.example.codechallenge
 
 import org.junit.Test
 

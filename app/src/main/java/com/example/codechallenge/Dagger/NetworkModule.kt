@@ -1,6 +1,5 @@
-package com.example.codechallengeaomata.Dagger
+package com.example.codechallenge.Dagger
 
-import com.example.codechallengeaomata.Network.RetroInstance
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -11,9 +10,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-
 @Module
-class NetworkModule(var baseUrl: String) {
+internal class NetworkModule(var baseUrl: String) {
     @Provides
     @Singleton
     fun provideGson(): Gson {

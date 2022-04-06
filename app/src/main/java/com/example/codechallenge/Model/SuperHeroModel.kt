@@ -1,5 +1,5 @@
 
-package com.example.codechallengeaomata.Model
+package com.example.codechallenge.Model
 
 import com.google.gson.annotations.SerializedName
 

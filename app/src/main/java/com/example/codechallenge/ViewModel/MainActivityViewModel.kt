@@ -1,17 +1,18 @@
-package com.example.codechallengeaomata.ViewModel
+package com.example.codechallenge.ViewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.codechallengeaomata.Model.SuperHeroModel
-import com.example.codechallengeaomata.Network.RetroInstance
-import com.example.codechallengeaomata.Network.RetroService
+import com.example.codechallenge.Model.SuperHeroModel
+import com.example.codechallenge.Network.RetroService
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import retrofit2.Retrofit
 
 class MainActivityViewModel:ViewModel() {
+
+
+
     lateinit var bookList :MutableLiveData<ArrayList<SuperHeroModel>>
     init {
         bookList = MutableLiveData()
@@ -30,11 +31,12 @@ class MainActivityViewModel:ViewModel() {
 //            .subscribe(getBookListObserverRx())
 //    }
 
-    fun getHeroList()
+    fun getHeroList(retroService:RetroService?)
     {
+       // val retroInstance =retrofit!!.create(RetroService::class.java)
 
-        val retroInstance = RetroInstance.getRetroInstanceMovie().create(RetroService::class.java)
-        retroInstance.getHeroes()
+        //val retroInstance = RetroInstance.getRetroInstanceMovie().create(RetroService::class.java)
+        retroService!!.getHeroes()
             .subscribeOn(Schedulers.io()) // RxJava
             .observeOn(AndroidSchedulers.mainThread())//RxJava
             .subscribe(getBookListObserverRx())

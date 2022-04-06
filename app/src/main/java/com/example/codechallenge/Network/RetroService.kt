@@ -1,6 +1,6 @@
-package com.example.codechallengeaomata.Network
+package com.example.codechallenge.Network
 
-import com.example.codechallengeaomata.Model.SuperHeroModel
+import com.example.codechallenge.Model.SuperHeroModel
 import io.reactivex.Observable
 import retrofit2.http.GET
 

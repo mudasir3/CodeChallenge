@@ -1,4 +1,4 @@
-package com.example.codechallengeaomata.Dagger
+package com.example.codechallenge.Dagger
 
 import android.app.Application
 import dagger.Module
@@ -7,7 +7,7 @@ import javax.inject.Singleton
 
 
 @Module
-class AppModule(private val mApplication: Application) {
+internal class AppModule(private val mApplication: Application) {
     @Provides
     @Singleton
     fun provideApplication(): Application {

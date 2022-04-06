@@ -1,4 +1,4 @@
-package com.example.codechallengeaomata.Adapter
+package com.example.codechallenge.Adapter
 
 import android.app.AlertDialog
 import android.content.Context
@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
-import com.example.codechallengeaomata.Activity.FullScreenActivity
-import com.example.codechallengeaomata.Model.SuperHeroModel
-import com.example.codechallengeaomata.R
+import com.example.codechallenge.Activity.FullScreenActivity
+import com.example.codechallenge.Model.SuperHeroModel
+import com.example.codechallenge.R
 import kotlinx.android.synthetic.main.recycler_list_row.view.*
 
 

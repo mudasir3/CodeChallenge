@@ -1,9 +1,9 @@
-package com.example.codechallengeaomata.Activity
+package com.example.codechallenge.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
-import com.example.codechallengeaomata.R
+import com.example.codechallenge.R
 import kotlinx.android.synthetic.main.activity_full_screen.*
 
 class FullScreenActivity : AppCompatActivity() {
